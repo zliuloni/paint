@@ -1,0 +1,52 @@
+#blacklogo {
+	position: absolute;
+	top: 10px;
+	left: 10px;
+}
+
+.threeDRenderer {
+	background-color: #000;
+	height: 100%;
+	position: absolute;
+	right: 0%;
+	left: 500px;
+	bottom: 0%;
+	top: 0%;
+}
+
+.twoDRenderer {
+	border-left: thin solid #666;
+	border-right: thin solid #666;
+	background-color: #000;
+	width: 350px;
+	height: 30%; /*was 33.333%*/
+	position: absolute;
+	left: 200px;
+}
+
+
+#yellow_slider {
+  margin-top: 2px;
+  margin-bottom: 5px;
+  background: yellow;
+}
+
+#red_slider {
+  margin-top: 2px;
+  margin-bottom: 5px;
+  background: red;
+}
+
+#green_slider {
+  margin-top: 2px;
+  margin-bottom: 5px;
+  background: green;
+}
+
+#yellow_ctrl {
+  border-bottom: thin solid #666;
+}
+
+#red_ctrl {
+  border-bottom: thin solid #666;
+}
