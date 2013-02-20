@@ -899,6 +899,8 @@ function losp_copy (up, view, labelmap, copyFromSliceNum, copyToSliceNum) {
 	else
 		newSlice = (up) ? currentSlice+1 : currentSlice-1;
 	
+
+	
 	switch (view)
 	{
 	case 'x':
@@ -909,23 +911,23 @@ function losp_copy (up, view, labelmap, copyFromSliceNum, copyToSliceNum) {
 		
 		//change X plane (easy)
 		labelmap._slicesX._children[newSlice]._texture._rawData = new Uint8Array(labelmap._slicesX._children[currentSlice]._texture._rawData);
-		
 		for(var y=0; y<y_width; y++) {
 		for(var z=0; z<z_width; z++) {
 			//change labelmap._image
 			labelmap._image[z][y][newSlice] = labelmap._image[z][y][currentSlice];
 			
 			//change Y plane (hard)
-			labelmap._slicesY._children[y]._texture._rawData[(z*x_width+newSlice)*4] =		labelmap._slicesY._children[y]._texture._rawData[(z*x_width+currentSlice)*4];
-			labelmap._slicesY._children[y]._texture._rawData[(z*x_width+newSlice)*4+1] =	labelmap._slicesY._children[y]._texture._rawData[(z*x_width+currentSlice)*4+1];
-			labelmap._slicesY._children[y]._texture._rawData[(z*x_width+newSlice)*4+2] =	labelmap._slicesY._children[y]._texture._rawData[(z*x_width+currentSlice)*4+2];
-			labelmap._slicesY._children[y]._texture._rawData[(z*x_width+newSlice)*4+3] =	labelmap._slicesY._children[y]._texture._rawData[(z*x_width+currentSlice)*4+3];	
+			
+			labelmap._slicesY._children[y]._texture._rawData[(z*x_width+parseInt(newSlice))*4] =		labelmap._slicesY._children[y]._texture._rawData[(z*x_width+parseInt(currentSlice))*4];
+			labelmap._slicesY._children[y]._texture._rawData[(z*x_width+parseInt(newSlice))*4+1] =	labelmap._slicesY._children[y]._texture._rawData[(z*x_width+parseInt(currentSlice))*4+1];
+			labelmap._slicesY._children[y]._texture._rawData[(z*x_width+parseInt(newSlice))*4+2] =	labelmap._slicesY._children[y]._texture._rawData[(z*x_width+parseInt(currentSlice))*4+2];
+			labelmap._slicesY._children[y]._texture._rawData[(z*x_width+parseInt(newSlice))*4+3] =	labelmap._slicesY._children[y]._texture._rawData[(z*x_width+parseInt(currentSlice))*4+3];	
 					
 			//change Z plane (hard)
-			labelmap._slicesZ._children[z]._texture._rawData[(y*x_width+newSlice)*4] =		labelmap._slicesZ._children[z]._texture._rawData[(y*x_width+currentSlice)*4];
-			labelmap._slicesZ._children[z]._texture._rawData[(y*x_width+newSlice)*4+1] =	labelmap._slicesZ._children[z]._texture._rawData[(y*x_width+currentSlice)*4+1];
-			labelmap._slicesZ._children[z]._texture._rawData[(y*x_width+newSlice)*4+2] =	labelmap._slicesZ._children[z]._texture._rawData[(y*x_width+currentSlice)*4+2];
-			labelmap._slicesZ._children[z]._texture._rawData[(y*x_width+newSlice)*4+3] =	labelmap._slicesZ._children[z]._texture._rawData[(y*x_width+currentSlice)*4+3];		
+			labelmap._slicesZ._children[z]._texture._rawData[(y*x_width+parseInt(newSlice))*4] =		labelmap._slicesZ._children[z]._texture._rawData[(y*x_width+parseInt(currentSlice))*4];
+			labelmap._slicesZ._children[z]._texture._rawData[(y*x_width+parseInt(newSlice))*4+1] =	labelmap._slicesZ._children[z]._texture._rawData[(y*x_width+parseInt(currentSlice))*4+1];
+			labelmap._slicesZ._children[z]._texture._rawData[(y*x_width+parseInt(newSlice))*4+2] =	labelmap._slicesZ._children[z]._texture._rawData[(y*x_width+parseInt(currentSlice))*4+2];
+			labelmap._slicesZ._children[z]._texture._rawData[(y*x_width+parseInt(newSlice))*4+3] =	labelmap._slicesZ._children[z]._texture._rawData[(y*x_width+parseInt(currentSlice))*4+3];		
 		}}		
 		break;
 	case 'y':
@@ -943,16 +945,16 @@ function losp_copy (up, view, labelmap, copyFromSliceNum, copyToSliceNum) {
 			labelmap._image[z][newSlice][x] = labelmap._image[z][currentSlice][x];
 			
 			//change X plane (hard)
-			labelmap._slicesX._children[x]._texture._rawData[(z*y_width+newSlice)*4] =		labelmap._slicesX._children[x]._texture._rawData[(z*y_width+currentSlice)*4];
-			labelmap._slicesX._children[x]._texture._rawData[(z*y_width+newSlice)*4+1] =	labelmap._slicesX._children[x]._texture._rawData[(z*y_width+currentSlice)*4+1];
-			labelmap._slicesX._children[x]._texture._rawData[(z*y_width+newSlice)*4+2] =	labelmap._slicesX._children[x]._texture._rawData[(z*y_width+currentSlice)*4+2];
-			labelmap._slicesX._children[x]._texture._rawData[(z*y_width+newSlice)*4+3] =	labelmap._slicesX._children[x]._texture._rawData[(z*y_width+currentSlice)*4+3];	
+			labelmap._slicesX._children[x]._texture._rawData[(z*y_width+parseInt(newSlice))*4] =		labelmap._slicesX._children[x]._texture._rawData[(z*y_width+parseInt(currentSlice))*4];
+			labelmap._slicesX._children[x]._texture._rawData[(z*y_width+parseInt(newSlice))*4+1] =	labelmap._slicesX._children[x]._texture._rawData[(z*y_width+parseInt(currentSlice))*4+1];
+			labelmap._slicesX._children[x]._texture._rawData[(z*y_width+parseInt(newSlice))*4+2] =	labelmap._slicesX._children[x]._texture._rawData[(z*y_width+parseInt(currentSlice))*4+2];
+			labelmap._slicesX._children[x]._texture._rawData[(z*y_width+parseInt(newSlice))*4+3] =	labelmap._slicesX._children[x]._texture._rawData[(z*y_width+parseInt(currentSlice))*4+3];	
 					
 			//change Z plane (hard)
-			labelmap._slicesZ._children[z]._texture._rawData[(newSlice*x_width+x)*4] =		labelmap._slicesZ._children[z]._texture._rawData[(currentSlice*x_width+x)*4];
-			labelmap._slicesZ._children[z]._texture._rawData[(newSlice*x_width+x)*4+1] =	labelmap._slicesZ._children[z]._texture._rawData[(currentSlice*x_width+x)*4+1];
-			labelmap._slicesZ._children[z]._texture._rawData[(newSlice*x_width+x)*4+2] =	labelmap._slicesZ._children[z]._texture._rawData[(currentSlice*x_width+x)*4+2];
-			labelmap._slicesZ._children[z]._texture._rawData[(newSlice*x_width+x)*4+3] =	labelmap._slicesZ._children[z]._texture._rawData[(currentSlice*x_width+x)*4+3];		
+			labelmap._slicesZ._children[z]._texture._rawData[(newSlice*x_width+parseInt(x))*4]   =	labelmap._slicesZ._children[z]._texture._rawData[(currentSlice*x_width+parseInt(x))*4];
+			labelmap._slicesZ._children[z]._texture._rawData[(newSlice*x_width+parseInt(x))*4+1] =	labelmap._slicesZ._children[z]._texture._rawData[(currentSlice*x_width+parseInt(x))*4+1];
+			labelmap._slicesZ._children[z]._texture._rawData[(newSlice*x_width+parseInt(x))*4+2] =	labelmap._slicesZ._children[z]._texture._rawData[(currentSlice*x_width+parseInt(x))*4+2];
+			labelmap._slicesZ._children[z]._texture._rawData[(newSlice*x_width+parseInt(x))*4+3] =	labelmap._slicesZ._children[z]._texture._rawData[(currentSlice*x_width+parseInt(x))*4+3];		
 		}}
 		break;
 	case 'z':
@@ -970,16 +972,16 @@ function losp_copy (up, view, labelmap, copyFromSliceNum, copyToSliceNum) {
 			labelmap._image[newSlice][y][x] = labelmap._image[currentSlice][y][x];
 			
 			//change X plane (hard)
-			labelmap._slicesX._children[x]._texture._rawData[(newSlice*y_width+y)*4] =		labelmap._slicesX._children[x]._texture._rawData[(currentSlice*y_width+y)*4];
-			labelmap._slicesX._children[x]._texture._rawData[(newSlice*y_width+y)*4+1] =	labelmap._slicesX._children[x]._texture._rawData[(currentSlice*y_width+y)*4+1];
-			labelmap._slicesX._children[x]._texture._rawData[(newSlice*y_width+y)*4+2] =	labelmap._slicesX._children[x]._texture._rawData[(currentSlice*y_width+y)*4+2];
-			labelmap._slicesX._children[x]._texture._rawData[(newSlice*y_width+y)*4+3] =	labelmap._slicesX._children[x]._texture._rawData[(currentSlice*y_width+y)*4+3];	
+			labelmap._slicesX._children[x]._texture._rawData[(newSlice*y_width+parseInt(y))*4]   =	labelmap._slicesX._children[x]._texture._rawData[(currentSlice*y_width+parseInt(y))*4];
+			labelmap._slicesX._children[x]._texture._rawData[(newSlice*y_width+parseInt(y))*4+1] =	labelmap._slicesX._children[x]._texture._rawData[(currentSlice*y_width+parseInt(y))*4+1];
+			labelmap._slicesX._children[x]._texture._rawData[(newSlice*y_width+parseInt(y))*4+2] =	labelmap._slicesX._children[x]._texture._rawData[(currentSlice*y_width+parseInt(y))*4+2];
+			labelmap._slicesX._children[x]._texture._rawData[(newSlice*y_width+parseInt(y))*4+3] =	labelmap._slicesX._children[x]._texture._rawData[(currentSlice*y_width+parseInt(y))*4+3];	
 					
 			//change Y plane (hard)
-			labelmap._slicesY._children[y]._texture._rawData[(newSlice*x_width+x)*4] =		labelmap._slicesY._children[y]._texture._rawData[(currentSlice*x_width+x)*4];
-			labelmap._slicesY._children[y]._texture._rawData[(newSlice*x_width+x)*4+1] =	labelmap._slicesY._children[y]._texture._rawData[(currentSlice*x_width+x)*4+1];
-			labelmap._slicesY._children[y]._texture._rawData[(newSlice*x_width+x)*4+2] =	labelmap._slicesY._children[y]._texture._rawData[(currentSlice*x_width+x)*4+2];
-			labelmap._slicesY._children[y]._texture._rawData[(newSlice*x_width+x)*4+3] =	labelmap._slicesY._children[y]._texture._rawData[(currentSlice*x_width+x)*4+3];	
+			labelmap._slicesY._children[y]._texture._rawData[(newSlice*x_width+parseInt(x))*4]   =	labelmap._slicesY._children[y]._texture._rawData[(currentSlice*x_width+parseInt(x))*4];
+			labelmap._slicesY._children[y]._texture._rawData[(newSlice*x_width+parseInt(x))*4+1] =	labelmap._slicesY._children[y]._texture._rawData[(currentSlice*x_width+parseInt(x))*4+1];
+			labelmap._slicesY._children[y]._texture._rawData[(newSlice*x_width+parseInt(x))*4+2] =	labelmap._slicesY._children[y]._texture._rawData[(currentSlice*x_width+parseInt(x))*4+2];
+			labelmap._slicesY._children[y]._texture._rawData[(newSlice*x_width+parseInt(x))*4+3] =	labelmap._slicesY._children[y]._texture._rawData[(currentSlice*x_width+parseInt(x))*4+3];	
 			}}
 		break;
 	default:
@@ -1045,11 +1047,9 @@ function losp_2D_fill(x, y, z, view, id, labelmap) {
 	
 	var pos=new Array();
 	pos=[x,y,z];
-	//window.console.log(pos);
 	var queue=new Queue();
 	
 	queue.enqueue(pos);
-	//window.console.log(queue.getLength());
 	while(!queue.isEmpty())
 	{
 		var curr=queue.dequeue();
@@ -1061,7 +1061,7 @@ function losp_2D_fill(x, y, z, view, id, labelmap) {
 		if (0>x || x_width<=x || 0>y || y_width<=y || 0>z || z_width<=z) {
 			continue; //dead end
 		}
-		//window.console.log(x,y,z);
+	
 		//find color in 4 sources, confirm 3 rawData
 		var Xred   = labelmap._slicesX._children[x]._texture._rawData[(z*y_width+y)*4];
 		var Xgreen = labelmap._slicesX._children[x]._texture._rawData[(z*y_width+y)*4+1];
@@ -1126,7 +1126,7 @@ function losp_2D_fill(x, y, z, view, id, labelmap) {
 		default:
 			window.console.log('Error: invalid view.');
 		}
-		// window.console.log(queue.getLength());
+		
 	}
 	
 }
@@ -1168,7 +1168,7 @@ function losp_magic_fill(x, y, z, view, id, volume, is3d) {
 	
 	var pos=new Array();
 	pos=[x,y,z];
-	//window.console.log(pos);
+
 	var queue=new Queue();
 	
 	queue.enqueue(pos);
@@ -1184,7 +1184,7 @@ function losp_magic_fill(x, y, z, view, id, volume, is3d) {
 		if (0>x || x_width<=x || 0>y || y_width<=y || 0>z || z_width<=z) {
 			continue; //dead end
 		}
-		// window.console.log(x,y,z);
+		
 		//find color in 4 sources, confirm 3 rawData
 		var Xred   = labelmap._slicesX._children[x]._texture._rawData[(z*y_width+y)*4];
 		var Xgreen = labelmap._slicesX._children[x]._texture._rawData[(z*y_width+y)*4+1];
