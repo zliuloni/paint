@@ -8,8 +8,7 @@
 	background-color: #000;
 	height: 100%;
 	position: absolute;
-	right: 0%;
-	left: 500px;
+	left: 471px;
 	bottom: 0%;
 	top: 0%;
 }
@@ -18,7 +17,7 @@
 	border-left: thin solid #666;
 	border-right: thin solid #666;
 	background-color: #000;
-	width: 350px;
+	width: 271px;
 	height: 30%; /*was 33.333%*/
 	position: absolute;
 	left: 200px;

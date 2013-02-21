@@ -118,10 +118,11 @@
 	
 
 	<!-- The viewer -->
-	<div id='viewer' style='display: none;'>
+	<div id='viewer'  style='display: none; '>
 
 		<ul class='navigation'>
-			<li id='volume' class='navigationLi'><div class='menu'>
+			<li id='volume' class='navigationLi'>
+			<div class='menu'>
 					<div class='pin'>
 						<span class='ui-icon ui-icon-pin-s pinicon'></span>
 					</div>
@@ -130,7 +131,7 @@
 
 						<a href='#volumeTab' class='selected'>Menu</a> 
 						<div id='volumeTab' class='tabContent'>
-							<div id='modes' style='width: 130px; float: left;'>
+							<div id='modes' style='float: left;'>
 								<div id='volumerendering'>
 									<img src='gfx/3d.png' />
 								</div>
@@ -139,19 +140,20 @@
 								</div>
 							</div>
 
-							<div id='colors'
-								style='width: 26px; margin-left: 4px; float: left;'>
+							<div id='colors' style='width: 26px; margin-left: 4px; float: left;'>
 
-								<input id='fgColorVolume' type='hidden'
-									class='color-picker black' size='6' value='#ffffff' /> <input
-									id='bgColorVolume' type='hidden' class='color-picker black'
-									size='6' value='#000000' />
+								<input id='fgColorVolume' type='hidden' class='color-picker black' size='6' value='#ffffff' />
+								<input id='bgColorVolume' type='hidden' class='color-picker black' size='6' value='#000000' /> 
+								
 							</div>
-
-							<div id='opacity-label' class='menuLabel'
-								style='margin-top: 4px; float: left;'>3D Opacity</div>
-							<div id='opacity-volume'
-								style='margin-left: 10px; margin-top: 4px; float: left;'></div>
+							<div class='menuLabel' style='margin-top: 3px; float: left;'>Background Color</div>
+							<div id='bgCol' style='width:26px;'>
+								<input id='currentBackground' type='hidden' class='color-picker black' size='6' value='#000000' />
+							</div>
+							
+							<!--<div id='opacity-label' class='menuLabel'
+								style='margin-top: 2px; float: left;'>3D Opacity</div>
+							<div id='opacity-volume' style='margin-left: 10px; margin-top: 4px; float: left;'></div>
 
 							<!-- <div id='windowlevel-label' class='menuLabel'
 								style='margin-top: 4px; float: left;'>Window/Level</div>
@@ -168,12 +170,12 @@
 							<button type="button" id="redoOption">Redo</button>
 							&nbsp;<br/>&nbsp;<br/>&nbsp;<br/>&nbsp;<br/> -->
 
-							<div id='visibility-labelmap' style='width: 150px; margin-top: 10px; float: left;'>
+							<div id='visibility-labelmap' style='width: 150px; margin-top: 3px; float: left;'>
 								<div class='menuLabel' style='margin-top: 3px; float: left;'>Labelmap Show/Hide</div>
 								<div id='labelmapvisibility' class='button eye show-icon' style='margin-left: 6px;'></div>
 							</div>
 
-							<div class='menuLabel' style='margin-top: 4px; float: left;'>Labelmap Opacity</div>
+							<div class='menuLabel' style='margin-top: 6px; float: left;'>Labelmap Opacity</div>
 							<div id='opacity-labelmap'
 								style='margin-left: 10px; margin-top: 4px; float: left;'></div>
 							
@@ -184,7 +186,7 @@
 							
 							<div id='brush-color' style='width: 35px; float: left; margin-top: 20px;'>
 								<input id='brushColor' type='hidden' class='color-picker black' size='6' value='#0000ff' /><br/>
-								<div class='menuLabel' style='margin-top: 4px; float: left;'>Color</div>
+								<div class='menuLabel' style='margin-top: 4px; float: left;'>Color</div> 
 							</div>
 							
 							<div id='brush-size' style='width: 35px; float: left; margin-top: 25px;'>

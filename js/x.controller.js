@@ -465,6 +465,16 @@ function bgColorVolume(hex, rgb) {
 
 }
 
+function currentBackground(hex, rgb) {
+	$("#3d").css('background-color',hex);
+	//$("#viewer").css('background-color',hex);
+	$("#sliceX").css('background-color',hex);
+	$("#sliceY").css('background-color',hex);
+	$("#sliceZ").css('background-color',hex);
+	//$(".menu").css('background-color',hex);
+}
+
+
 //
 // LABELMAP
 //

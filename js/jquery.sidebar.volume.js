@@ -51,6 +51,11 @@ jQuery(function() {
     letterCase: 'uppercase',
     change: fgColorVolume
   });
+
+  jQuery('#currentBackground').miniColors({
+    letterCase: 'uppercase',
+    change: currentBackground  
+  });
   
   
   jQuery('#inverted').button();

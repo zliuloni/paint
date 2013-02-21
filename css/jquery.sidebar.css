@@ -47,7 +47,7 @@
 }
 
 #volumeTab {
-	height: 550px;
+	height: 570px;
 }
 
 #labelmapTab {
@@ -55,6 +55,7 @@
 }
 
 .navigation {
+	width: 200px;
 	position: fixed;
 	margin: 0px;
 	padding: 0px;
@@ -65,7 +66,7 @@
 }
 
 .navigationLi {
-	width: 100px;
+	width: 200px;
 }
 
 .menu {
