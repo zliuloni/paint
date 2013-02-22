@@ -432,7 +432,7 @@ X.interactor.prototype.onMouseUp_ = function(event) {
   }
   
   if (this instanceof X.interactor2D && !losp_slices._labelundo._inaction) {//has NOT been drawing, just a click
-	losp_MouseMove(this._id, false); //false means not a drag, just a click
+	losp_MouseMove(this._id, false, event); //false means not a drag, just a click
   }
   //all actions are complete
   losp_slices._labelundo._inaction = false;
@@ -1327,7 +1327,7 @@ function losp_checkimage (labelmap, percent) {
 }
 
 //the main function call, gets called in onMouseMovementInside(drag=true) AND onMouseUp(drag=false)
-function losp_MouseMove(id, drag) {
+function losp_MouseMove(id, drag, evt) {
 
 	var slicedata = null;
 	var view = null;
@@ -1350,8 +1350,19 @@ function losp_MouseMove(id, drag) {
 	  	break;
 	}
 
-	var _paintX = event.offsetX;
-	var _paintY = event.offsetY;
+ 	if (typeof evt.offsetX != 'undefined') 
+ 	{
+      _paintX = evt.offsetX;
+      _paintY = evt.offsetY;
+    }
+    else 
+    	if (typeof evt.layerX != 'undefined') 
+    	{
+      	_paintX = evt.layerX;
+      	_paintY = evt.layerY;
+		}
+	//var _paintX = evt.offsetX;
+	//var _paintY = evt.offsetY;
 
 	var _paintSliceX = 0;
 	var _paintSliceY = 0;
@@ -1473,7 +1484,7 @@ function losp_MouseMove(id, drag) {
 X.interactor.prototype.onMouseMovementInside_ = function(event) {
 	
 	if (this instanceof X.interactor2D && this._leftButtonDown) {
-		losp_MouseMove(this._id, true);
+		losp_MouseMove(this._id, true, event);
 	}
 	
   this['mousemoveEvent'] = event; // we need to buffer the event to run eval in

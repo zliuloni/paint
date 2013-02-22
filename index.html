@@ -146,11 +146,9 @@
 								<input id='bgColorVolume' type='hidden' class='color-picker black' size='6' value='#000000' /> 
 								
 							</div>
-							<div class='menuLabel' style='margin-top: 3px; float: left;'>Background Color</div>
-							<div id='bgCol' style='width:26px;'>
-								<input id='currentBackground' type='hidden' class='color-picker black' size='6' value='#000000' />
-							</div>
 							
+							
+					
 							<!--<div id='opacity-label' class='menuLabel'
 								style='margin-top: 2px; float: left;'>3D Opacity</div>
 							<div id='opacity-volume' style='margin-left: 10px; margin-top: 4px; float: left;'></div>
@@ -170,9 +168,16 @@
 							<button type="button" id="redoOption">Redo</button>
 							&nbsp;<br/>&nbsp;<br/>&nbsp;<br/>&nbsp;<br/> -->
 
-							<div id='visibility-labelmap' style='width: 150px; margin-top: 3px; float: left;'>
-								<div class='menuLabel' style='margin-top: 3px; float: left;'>Labelmap Show/Hide</div>
-								<div id='labelmapvisibility' class='button eye show-icon' style='margin-left: 6px;'></div>
+							<div id="pageBackground" style='width: 163px; margin-top: 6px; float: left;'>
+								<span class='menuLabel' style='margin-top: 3px; float: left;'>Background Color</span>
+								<span id='bgCol' style='float: right'>
+									<input id='currentBackground' type='hidden' class='color-picker black' size='6' value='#000000' />
+								</span>
+							</div>
+
+							<div id='visibility-labelmap' style='width: 163px; margin-top: 3px; float: left;'>
+								<span class='menuLabel' style='margin-top: 3px; float: left;'>Labelmap Show/Hide</span>
+								<span id='labelmapvisibility' class='button eye show-icon' style='float: right;'></span>
 							</div>
 
 							<div class='menuLabel' style='margin-top: 6px; float: left;'>Labelmap Opacity</div>
@@ -210,11 +215,16 @@
 								<div class='menuLabel' style='margin-top: 4px; margin-left: 12px; float: left;'>Fill</div>
 							</div>
 							
-							<div id='eraser' style='width: 80px; float: left; margin-top: 18px;'>
+							<div id='eraser' style='width: 60px; float: left; margin-top: 18px;'>
 								<div id='eraser-icon' style='margin-left: 6px;'></div><br/>
 								<div class='menuLabel' style='margin-left: 5px; margin-top: 4px; float: left;'>Eraser</div>
 							</div>
 
+							<div id='copy' style='width: 50px; float: left; margin-top: 18px;'>
+								<div id='copy-icon' style='margin-left: 6px;'></div><br/>
+								<div class='menuLabel' style='margin-left: 1px; margin-top: 4px; float: left;'>Duplicate...</div>
+							</div>
+							<br/>
 							
 							<div id='magic2d' style='width: 60px; float: left; margin-top: 20px;'>
 								<div id='magic2d-icon' style='margin-left: 6px;'></div><br/>
@@ -237,11 +247,7 @@
 							</div>
 							
 
-							<div id='copy' style='width: 130px; float: left; margin-top: 20px;'>
-								<div id='copy-icon' style='margin-left: 6px;'></div><br/>
-								<div class='menuLabel' style='margin-left: 1px; margin-top: 4px; float: left;'>Duplicate...</div>
-							</div>
-
+							
 							<!-- <div id='paste' style='width: 80px; float: left; margin-top: 20px;'>
 								<div id='paste-icon' style='margin-left: 6px;'></div><br/>
 								<div class='menuLabel' style='margin-left: 1px; margin-top: 4px; float: left;'>Paste...</div>
