@@ -287,31 +287,31 @@ X.renderer.prototype.onResize_ = function() {
 	// disable resize actions for now, 
 	// because it resets 3d view, 
 	// and also zooms 2d view which complicates coordinates
-	
-  // var container = goog.dom.getElement(this._container);
-  // this._width = container.clientWidth;
-  // this._height = container.clientHeight;
-//   
+	/*
+   var container = goog.dom.getElement(this._container);
+   this._width = container.clientWidth;
+   this._height = container.clientHeight;
+   
   // // propagate it to the canvas
-  // var canvas = goog.dom.getElement(this._canvas);
-  // canvas.width = this._width;
-  // canvas.height = this._height;
-//   
-  // if (this instanceof X.renderer3D) {
-//     
+   var canvas = goog.dom.getElement(this._canvas);
+   canvas.width = this._width;
+   canvas.height = this._height;
+   
+   if (this instanceof X.renderer3D) {
+     
     // // modify 3d viewport
-    // this._context.viewport(0, 0, this._width, this._height);
-//     
+    this._context.viewport(0, 0, this._width, this._height);
+    
     // // modify perspective
-    // this._camera._perspective = new Float32Array(this._camera
-        // .calculatePerspective_(this._camera._fieldOfView,
-            // (this._canvas.width / this._canvas.height), 1, 10000).flatten());
-//     
-  // }
-//   
+    this._camera._perspective = new Float32Array(this._camera
+         .calculatePerspective_(this._camera._fieldOfView,
+             (this._canvas.width / this._canvas.height), 1, 10000).flatten());
+     
+   }
+   
   // // .. and re-draw
-  // this.resetViewAndRender();
-  
+   this.resetViewAndRender();
+  */
 };
 
 
@@ -537,10 +537,9 @@ X.renderer.prototype.init = function(_contextName) {
   // create the canvas
   var _canvas = goog.dom.createDom('canvas');
   
-  //
   // append it to the container
   goog.dom.appendChild(this._container, _canvas);
-  
+
   // the container might have resized now, so update our width and height
   // settings
   this._width = this._container.clientWidth;
@@ -716,12 +715,19 @@ X.renderer.prototype.add = function(object) {
  * @protected
  */
 X.renderer.prototype.update_ = function(object) {
-
-  if (!this._canvas || !this._context) {
-    
-    throw new Error('The renderer was not initialized properly.');
+ /*  //check id new3d renderer exists. If it does, check canvas and context of that
+  if(switched == true) {
+  	if(!new3d._canvas || !new3d._context) {
+  		throw new Error('The new renderer was not initialized properly.');
+  	}
+  }
+  else */
+  	if (!this._canvas || !this._context) {
+        throw new Error('The renderer was not initialized properly.');
     
   }
+  
+  
   
   if (!goog.isDefAndNotNull(object)) {
     window.console.log(object);
@@ -1047,5 +1053,4 @@ X.renderer.prototype.destroy = function() {
   goog.dom.removeNode(this._canvas);
   delete this._canvas;
   this._canvas = null;
-  
 };

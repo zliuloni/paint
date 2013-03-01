@@ -6,7 +6,8 @@ goog.require('X.volume');
 goog.require('X.cube');
 
 function initializeRenderers(){
-  
+ 
+  switched = false; 
   if (ren3d) {
     // do this only once
     return;
@@ -21,7 +22,7 @@ function initializeRenderers(){
   sliceX.container = 'sliceX';
   sliceX.orientation = 'X';
   sliceX.init();
-
+  
   sliceY = new X.renderer2D();
   sliceY.container = 'sliceY';
   sliceY.orientation = 'Y';

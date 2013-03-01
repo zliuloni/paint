@@ -739,6 +739,98 @@ function sliceCopySingle(from, to) {
 	}
 }
 
+function changeView(view) {
+	
+	switched = true;
+	
+	threeDlarge=ren3d.container.id=='3d'?true:false;
+	//console.log("old=");
+	//console.log(ren3d);
+  	ren3d.destroy();
+  	new3d = new X.renderer3D();
+ 
+  	goog.dom.replaceNode(null,ren3d);
+  	console.log(window);
+  //	console.log(ren3d);
+  	sliceX.destroy();
+  	sliceY.destroy();
+  	sliceZ.destroy();
+  	
+  	
+  	
+  	sliceX = new X.renderer2D();
+  	sliceX.orientation = 'X';
+  	
+  	sliceY = new X.renderer2D();
+  	sliceY.orientation = 'Y';
+  	
+  	sliceZ = new X.renderer2D();
+  	sliceZ.orientation = 'Z';
+  	
+  	switch(view) {
+  		
+  		case 'X': 	
+  					new3d.container = (threeDlarge?'sliceX':'3d');
+  					//new3d.container = 'sliceX';	
+  					sliceX.container = (threeDlarge?'3d':'sliceX');
+  					sliceY.container = 'sliceY';
+  					sliceZ.container = 'sliceZ';
+  					break;
+  					
+  		case 'Y': 	new3d.container = 'sliceY';	
+  					sliceX.container = 'sliceX';
+  					sliceY.container = '3d';
+  					sliceZ.container = 'sliceZ';
+  					break;
+  					
+  		case 'Z': 	new3d.container = 'sliceZ';	
+  					sliceX.container = 'sliceX';
+  					sliceY.container = 'sliceY';
+  					sliceZ.container = '3d';
+  					break;
+  	}
+  	
+  	new3d.init();    
+  	//console.log(new3d);
+  	sliceX.init();
+  	sliceX.interactor.id=10;	//interactor of X view should always have id 10
+
+  	sliceY.init();  
+  	sliceY.interactor.id=17;	//interactor of Y view should always have id 17
+  	
+  	sliceZ.init();  
+  	sliceZ.interactor.id=24;	//interactor of Z view should always have id 24
+  
+    setViewDim();
+  
+  	new3d.onShowtime = function() {
+        window.console.log('Loading completed again...');
+    
+
+    	if (_data.volume.file != null) {
+      
+      	// show any volume also in 2d
+      	sliceX.add(volume);
+      	sliceY.add(volume);
+      	sliceZ.add(volume);
+      	sliceX.render();
+      	sliceY.render();
+      	sliceZ.render();
+      
+    	}	
+    }
+  
+   	new3d.add(volume);
+ 	
+	new3d.camera.view = new X.matrix(
+    [[-0.5093217615929089, -0.8570143021091494, -0.07821655290449646, 10],
+     [0.15980913879519168, -0.1834973848251334, 0.9699431678814355, 17],
+     [-0.8456077000154597, 0.48151344295118087, 0.23041792884205461, -330],
+     [0, 0, 0, 1]]);
+     
+     new3d.render();
+}
+
 function changeSliceOption(slice, prev) {
 	
 	var changeSlice = -1;

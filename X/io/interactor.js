@@ -245,6 +245,21 @@ X.interactor.prototype.__defineGetter__('middleButtonDown', function() {
 });
 
 
+X.interactor.prototype.__defineSetter__('id', function(id) {
+
+   if (!goog.isDefAndNotNull(id)) {
+    
+    throw new Error('A valid id is required.');
+    
+  }
+  
+  var _id = id;
+  
+  this._id = _id;
+  
+  
+});
+
 /**
  * Get the state of the right mouse button.
  * 
@@ -1328,7 +1343,6 @@ function losp_checkimage (labelmap, percent) {
 
 //the main function call, gets called in onMouseMovementInside(drag=true) AND onMouseUp(drag=false)
 function losp_MouseMove(id, drag, evt) {
-
 	var slicedata = null;
 	var view = null;
 	switch (id)

@@ -177,6 +177,17 @@ jQuery(function() {
   	changeSliceOption('Z', false);
   });
   
+  jQuery('#switchButtonX').click(function() {
+  	changeView('X');
+  })
+  
+  jQuery('#switchButtonY').click(function() {
+  	changeView('Y');
+  })
+  
+  jQuery('#switchButtonZ').click(function() {
+  	changeView('Z');
+  })
   
   jQuery('#brush-icon').button({ icons: { primary: "ui-icon-brush" }, text: false });
   jQuery('#bucket-icon').button({ icons: { primary: "ui-icon-bucket" }, text: false });
@@ -190,6 +201,7 @@ jQuery(function() {
   jQuery('#magic3d-icon').button({ icons: { primary: "ui-icon-magic-3d" }, text: false });
         
   jQuery('#brush-icon').click(function() {
+  	console.log("button clicked");
     jQuery('#brush-icon').addClass('clicked-button');
     jQuery('#bucket-icon').removeClass('clicked-button');
     jQuery('#eraser-icon').removeClass('clicked-button');

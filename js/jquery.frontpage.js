@@ -17,7 +17,7 @@ jQuery(document).ready(function() {
   has_mesh = false;
   
   configurator = function() {
-
+	
   };
   
   
@@ -219,6 +219,12 @@ function onDrop(evt) {
   selectfiles(files);
   
 };
+
+function setViewDim() {
+
+	jQuery('.threeDRenderer').css("height", jQuery(window).height()+"px");
+	jQuery('.threeDRenderer').css("width", jQuery(window).width()-471+"px");
+}
 
 function switchToViewer() {
 

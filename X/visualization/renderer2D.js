@@ -643,16 +643,17 @@ X.renderer2D.prototype.render_ = function(picking, invoked) {
   var _upperThreshold = _volume._upperThreshold;
   
 	//update these global vars in used in interactor.js
+	
 	var slicetoupdate = null;
-	switch (this._camera._id)
+	switch (this._orientation)
 	{
-	case 12:
+	case "X":
 		slicetoupdate = losp_slices._Xslice;
 	break;
-	case 19:
+	case "Y":
 		slicetoupdate = losp_slices._Yslice;
 	break;
-	case 26:
+	case "Z":
 		slicetoupdate = losp_slices._Zslice;
 	break;
 	default:
