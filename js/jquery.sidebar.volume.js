@@ -118,6 +118,11 @@ jQuery(function() {
   	paintBrushSize();
   });
   
+  jQuery('#favColors').change(function() {
+  	usedColors();
+  });
+  
+  
   jQuery('#eraserOption').click(function() {
   	eraserOption();
   });

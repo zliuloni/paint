@@ -181,8 +181,7 @@
 							</div>
 
 							<div class='menuLabel' style='margin-top: 6px; float: left;'>Labelmap Opacity</div>
-							<div id='opacity-labelmap'
-								style='margin-left: 10px; margin-top: 4px; float: left;'></div>
+							<div id='opacity-labelmap' style='margin-left: 10px; margin-top: 4px; float: left;'></div>
 							
 							<div id='brush' style='width: 50px; float: left; margin-top: 20px;'>
 								<div id='brush-icon' style='margin-left: 6px;' class='clicked-button'></div><br/>
@@ -193,8 +192,14 @@
 								<input id='brushColor' type='hidden' class='color-picker black' size='6' value='#0000ff' /><br/>
 								<div class='menuLabel' style='margin-top: 4px; float: left;'>Color</div> 
 							</div>
+							<div id='recentColors' style='width:50px; float:left;margin-top:21px;'>
+								<select id='favColors' style='width:50px; background-color:#0000ff;'>
+									<option value="0,0,255, " style="background-color:#0000ff"></option>
+								</select>
+								<div class='menuLabel' style='margin-top: 4px; margin-left: 3px; float: left;'>Used Colors</div> 
+							</div>
 							
-							<div id='brush-size' style='width: 35px; float: left; margin-top: 25px;'>
+							<div id='brush-size' style='width: 35px; float: left; margin-top: 21px;'>
 								<select id="paintBrushSize" style="margin-left: 2px; float:left">
 								  <option value="1">1</option>
 								  <option value="2">2</option>
@@ -205,22 +210,22 @@
 								<div class='menuLabel' style='margin-left: 6px; margin-top: 4px; float: left; margin-bottom: 12px; '>Size</div>
 							</div>
 							
-							<div id='brush-clobber' style='width: 35px; float: left; margin-top: 29px;'>
-								<input id="clobberOption" type="checkbox" name="clobber" checked="checked" style="margin-left: 20px;"/><br/>
-								<div class='menuLabel' style='margin-left: 13px; margin-top: 4px; float: left; margin-bottom: 13px;'>Clobber</div>
+							<div id='brush-clobber' style='width: 163px; float: left;  margin-left :5px; margin-top: 10px;'>
+								<span class='menuLabel' style='margin-top: 4px; float: left; margin-bottom: 13px;'>Clobber</span>
+								<input id="clobberOption" type="checkbox" name="clobber" checked="checked" style="float:center; margin-left: 10px"/><br/>
 							</div>
 							
-							<div id='bucket' style='width: 60px; float: left; margin-top: 18px;'>
+							<div id='bucket' style='width: 60px; float: left; margin-top: 5px;'>
 								<div id='bucket-icon' style='margin-left: 6px;'></div><br/>
 								<div class='menuLabel' style='margin-top: 4px; margin-left: 12px; float: left;'>Fill</div>
 							</div>
 							
-							<div id='eraser' style='width: 60px; float: left; margin-top: 18px;'>
+							<div id='eraser' style='width: 60px; float: left; margin-top: 5px;'>
 								<div id='eraser-icon' style='margin-left: 6px;'></div><br/>
 								<div class='menuLabel' style='margin-left: 5px; margin-top: 4px; float: left;'>Eraser</div>
 							</div>
 
-							<div id='copy' style='width: 50px; float: left; margin-top: 18px;'>
+							<div id='copy' style='width: 50px; float: left; margin-top: 5px;'>
 								<div id='copy-icon' style='margin-left: 6px;'></div><br/>
 								<div class='menuLabel' style='margin-left: 1px; margin-top: 4px; float: left;'>Duplicate...</div>
 							</div>

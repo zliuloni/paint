@@ -549,6 +549,23 @@ function paintBrushSize() {
 	losp_slices._brush._size = selectedView;
 }
 
+function usedColors() {
+	if(!volume)	{
+		return;
+	}
+	selectedValue = $('#favColors').val();
+	rgbaColor = selectedValue.split(",");
+	var rgba = {};
+	rgba.r = parseInt(rgbaColor[0]);
+	rgba.g = parseInt(rgbaColor[1]);
+	rgba.b = parseInt(rgbaColor[2]);
+	rgba.a = undefined;
+	var rgbaColor = [rgba.r, rgba.g, rgba.b, rgba.a];
+	losp_slices._brush._color = rgbaColor;
+	var hexColor = ((1 << 24) + (rgba.r << 16) + (rgba.g << 8) + rgba.b).toString(16).substr(1);
+	$("#favColors").css({'background-color': '#'+hexColor});
+}
+
 function toggleUndoOption() {
 
 	if (!volume) {
@@ -572,9 +589,10 @@ function brushColor(hex, rgba) {
 	if (!volume) {
 		return;
 	}
-
 	var rgbaColor = [rgba.r, rgba.g, rgba.b, rgba.a];
 	losp_slices._brush._color = rgbaColor;
+	$("<option value="+rgbaColor+" style=\"background-color:"+hex+";\"></option>").appendTo("#favColors");
+
 }
 
 function toggleClobberOption() {
