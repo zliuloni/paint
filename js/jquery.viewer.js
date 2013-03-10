@@ -1,8 +1,6 @@
 // the viewers
 jQuery(function() {
 
-  
-
   // create the 2d sliders
   jQuery("#yellow_slider").slider({
     slide: volumeslicingX

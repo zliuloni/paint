@@ -162,6 +162,11 @@ function setupUi() {
 	// document.getElementById("labelName").innerHTML = name;
 
 
+	_current_3d_content = ren3d;
+  	_current_X_content = sliceX;
+ 	_current_Y_content = sliceY;
+  	_current_Z_content = sliceZ;
+
 	// Set up slice number
 	document.getElementById('sliceXText').innerHTML = "Sagittal slice number: " + Math.floor(jQuery('#yellow_slider').slider("option", "value"));
 	document.getElementById('sliceYText').innerHTML = "Coronal slice number: " + Math.floor(jQuery('#red_slider').slider("option", "value"));
@@ -757,87 +762,10 @@ function sliceCopySingle(from, to) {
 	}
 }
 
-function changeView(view) {
-
-	threeDlarge=ren3d.container.id=='3d'?true:false;
-  	ren3d.destroy();
-  	ren3d = new X.renderer3D();
-  	
-  	sliceX.destroy();
-  	sliceY.destroy();
-  	sliceZ.destroy();
-  	
-  	sliceX = new X.renderer2D();
-  	sliceX.orientation = 'X';
-  	
-  	sliceY = new X.renderer2D();
-  	sliceY.orientation = 'Y';
-  	
-  	sliceZ = new X.renderer2D();
-  	sliceZ.orientation = 'Z';
-  	
-  	switch(view) {
-  		
-  		case 'X': 	
-  					ren3d.container = (threeDlarge?'sliceX':'3d');
-  					//ren3d.container = 'sliceX';	
-  					sliceX.container = (threeDlarge?'3d':'sliceX');
-  					sliceY.container = 'sliceY';
-  					sliceZ.container = 'sliceZ';
-  					break;
-  					
-  		case 'Y': 	ren3d.container = (threeDlarge?'sliceY':'3d');;	
-  					sliceX.container = 'sliceX';
-  					sliceY.container = (threeDlarge?'3d':'sliceY');
-  					sliceZ.container = 'sliceZ';
-  					break;
-  					
-  		case 'Z': 	ren3d.container = (threeDlarge?'sliceZ':'3d');;	
-  					sliceX.container = 'sliceX';
-  					sliceY.container = 'sliceY';
-  					sliceZ.container = (threeDlarge?'3d':'sliceZ');
-  					break;
-  	}
-  	
-  	ren3d.init();    
-  	//console.log(ren3d);
-  	sliceX.init();
-  	sliceX.interactor.id=10;	//interactor of X view should always have id 10
-
-  	sliceY.init();  
-  	sliceY.interactor.id=17;	//interactor of Y view should always have id 17
-  	
-  	sliceZ.init();  
-  	sliceZ.interactor.id=24;	//interactor of Z view should always have id 24
-  
-    setViewDim();
-  
-  	ren3d.onShowtime = function() {
-        window.console.log('Loading completed again...');
-    
-
-    	if (_data.volume.file != null) {
-      
-      	// show any volume also in 2d
-      	sliceX.add(volume);
-      	sliceY.add(volume);
-      	sliceZ.add(volume);
-      	sliceX.render();
-      	sliceY.render();
-      	sliceZ.render();
-      
-    	}	
-    }
-  
-   	ren3d.add(volume);
- 	
-	ren3d.camera.view = new X.matrix(
-    [[-0.5093217615929089, -0.8570143021091494, -0.07821655290449646, 10],
-     [0.15980913879519168, -0.1834973848251334, 0.9699431678814355, 17],
-     [-0.8456077000154597, 0.48151344295118087, 0.23041792884205461, -330],
-     [0, 0, 0, 1]]);
-     
-     ren3d.render();
+function switchButton(rend,container) {
+	_old_2d_content = eval('_current_'+container+'_content');
+    eval('var cont = '+rend+'.container');    
+    showLarge(jQuery(cont), _old_2d_content);
 }
 
 function changeSliceOption(slice, prev) {

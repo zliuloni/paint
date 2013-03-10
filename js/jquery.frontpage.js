@@ -70,6 +70,10 @@ jQuery(document).ready(function() {
   
 });
 
+var _current_3d_content = null;
+var _current_X_content = null;
+var _current_Y_content = null;
+var _current_Z_content = null;
 function $_GET(variable) { 
 	var query = window.location.search.substring(1); 
 	var vars = query.split("&"); 
@@ -220,12 +224,6 @@ function onDrop(evt) {
   
 };
 
-function setViewDim() {
-
-	jQuery('.threeDRenderer').css("height", jQuery(window).height()+"px");
-	jQuery('.threeDRenderer').css("width", jQuery(window).width()-471+"px");
-}
-
 function switchToViewer() {
 
   jQuery('#body').addClass('viewerBody');
@@ -254,4 +252,59 @@ function selectfiles(files) {
   read(files);
   
   
+};
+
+function showLarge(el2, new3d_content) {
+	
+  // jump out if the renderers were not set up
+  if (!_current_3d_content || !_current_X_content || !_current_Y_content ||
+      !_current_Z_content) {
+
+  console.log('nothing to do');
+  return;
+  }
+
+  // from Stackoverflow http://stackoverflow.com/a/6391857/1183453
+
+  var el1 = jQuery('#3d');
+  el1.prepend('<div/>'); // drop a marker in place
+  var tag1 = jQuery(el1.children()[0]);
+  var old_content = tag1.nextAll();
+  tag1.replaceWith(el2.children('canvas'));
+  
+  el2.prepend('<div/>');
+  var tag2 = jQuery(el2.children()[0]);
+  tag2.replaceWith(old_content);
+
+  // adjust the XTK containers
+
+  var _2dcontainerId = el2.attr('id');
+  var _orientation = _2dcontainerId.substr(-1);
+  if (_orientation == 'd') {
+    return;
+  }
+
+  var _old_2d_content = eval('_current_' + _orientation + '_content');
+  var _old_3d_content = _current_3d_content;
+
+  _current_3d_content.container = document.getElementById(_2dcontainerId);
+  _old_2d_content.container = document.getElementById('3d');
+
+  // .. and update the layout
+  _current_3d_content = _old_2d_content;
+  eval('_current_' + _orientation + '_content = _old_3d_content');
+
+  //enlarge 2d image to fit 3d container
+  if(_current_3d_content instanceof X.renderer2D) {
+  	var container = goog.dom.getElement(_current_3d_content._container);
+  	_current_3d_content._width = container.clientWidth;
+  	_current_3d_content._height = container.clientHeight;
+   
+  	// propagate it to the canvas
+   	var canvas = goog.dom.getElement(_current_3d_content._canvas);
+   	canvas.width = _current_3d_content._width;
+  	canvas.height = _current_3d_content._height;
+   
+   	_current_3d_content.resetViewAndRender();
+  }
 };

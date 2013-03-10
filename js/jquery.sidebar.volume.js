@@ -183,16 +183,38 @@ jQuery(function() {
   });
   
   jQuery('#switchButtonX').click(function() {
-  	changeView('X');
-  })
+  	if(!switched) {
+  		switchButton('sliceX', 'X');
+  		switched = true;
+  	}
+  	else {
+  		switchButton('ren3d','3d');
+  		switched = false;
+  	}  
+  });
   
   jQuery('#switchButtonY').click(function() {
-  	changeView('Y');
+  	if(!switched) {
+  		switchButton('sliceY', 'Y');
+  		switched = true;
+  	}
+  	else {
+  		switchButton('ren3d','3d');
+  		switched = false;
+  	}
   })
   
   jQuery('#switchButtonZ').click(function() {
-  	changeView('Z');
+  	if(!switched) {
+  		switchButton('sliceZ', 'Z');
+  		switched = true;
+  	}
+  	else {
+  		switchButton('ren3d','3d');
+  		switched = false;
+  	}
   })
+ 
   
   jQuery('#brush-icon').button({ icons: { primary: "ui-icon-brush" }, text: false });
   jQuery('#bucket-icon').button({ icons: { primary: "ui-icon-bucket" }, text: false });
@@ -206,7 +228,6 @@ jQuery(function() {
   jQuery('#magic3d-icon').button({ icons: { primary: "ui-icon-magic-3d" }, text: false });
         
   jQuery('#brush-icon').click(function() {
-  	console.log("button clicked");
     jQuery('#brush-icon').addClass('clicked-button');
     jQuery('#bucket-icon').removeClass('clicked-button');
     jQuery('#eraser-icon').removeClass('clicked-button');

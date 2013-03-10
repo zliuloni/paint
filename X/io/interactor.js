@@ -1149,7 +1149,7 @@ function losp_2D_fill(x, y, z, view, id, labelmap) {
 function losp_magic_fill(x, y, z, view, id, volume, is3d) {
 	//zzztodo update range, disable options
 	var labelmap = volume._labelmap;
-	if (is3d) { window.console.log("in 3d"); }
+	
 	//find dimensions						//same as  \/
 	var x_width = labelmap._dimensions[0]; //labelmap._children[0]._children.length;
 	var y_width = labelmap._dimensions[1]; //labelmap._children[1]._children.length;
@@ -1287,7 +1287,6 @@ function losp_magic_fill(x, y, z, view, id, volume, is3d) {
 			}
 		}
 	}
-		window.console.log("done!");
 }
  
 
@@ -1500,7 +1499,6 @@ X.interactor.prototype.onMouseMovementInside_ = function(event) {
 	if (this instanceof X.interactor2D && this._leftButtonDown) {
 		losp_MouseMove(this._id, true, event);
 	}
-	
   this['mousemoveEvent'] = event; // we need to buffer the event to run eval in
   // advanced compilation
   eval("this.onMouseMove(this['mousemoveEvent'])");
