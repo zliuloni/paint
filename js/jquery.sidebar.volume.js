@@ -185,11 +185,11 @@ jQuery(function() {
   
   jQuery('#switchButtonX').click(function() {
   	if(!switched) {
-  		switchButton('sliceX', 'X');
+  		switchButton('sliceX');
   		switched = true;
   	}
   	else {
-  		switchButton('ren3d','3d');
+  		switchButton('ren3d');
   		switched = false;
   	}  
   });

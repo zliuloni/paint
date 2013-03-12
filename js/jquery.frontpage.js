@@ -254,7 +254,7 @@ function selectfiles(files) {
   
 };
 
-function showLarge(el2, new3d_content) {
+function showLarge(el2) {
 	
   // jump out if the renderers were not set up
   if (!_current_3d_content || !_current_X_content || !_current_Y_content ||
@@ -304,7 +304,24 @@ function showLarge(el2, new3d_content) {
    	var canvas = goog.dom.getElement(_current_3d_content._canvas);
    	canvas.width = _current_3d_content._width;
   	canvas.height = _current_3d_content._height;
-   
+  	
    	_current_3d_content.resetViewAndRender();
   }
+  
+   eval('var _current_2d_content = _current_' + _orientation + '_content');
+   if(_current_2d_content instanceof X.renderer2D) {
+  	var container = goog.dom.getElement(_current_2d_content._container);
+  	_current_2d_content._width = container.clientWidth;
+  	_current_2d_content._height = container.clientHeight;
+   
+  	// propagate it to the canvas
+   	var canvas = goog.dom.getElement(_current_2d_content._canvas);
+   	canvas.width = _current_2d_content._width;
+  	canvas.height = _current_2d_content._height;
+  	
+   	_current_2d_content.resetViewAndRender();
+   	
+   	eval('_current_' + _orientation + '_content = _current_2d_content');
+  }
+  
 };

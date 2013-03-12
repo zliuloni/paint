@@ -471,12 +471,8 @@ function bgColorVolume(hex, rgb) {
 }
 
 function currentBackground(hex, rgb) {
-	$("#3d").css('background-color',hex);
-	//$("#viewer").css('background-color',hex);
-	$("#sliceX").css('background-color',hex);
-	$("#sliceY").css('background-color',hex);
-	$("#sliceZ").css('background-color',hex);
-	//$(".menu").css('background-color',hex);
+	$(".threeDRenderer").css('background-color',hex);
+	$(".twoDRenderer").css('background-color',hex);	
 }
 
 
@@ -765,10 +761,10 @@ function sliceCopySingle(from, to) {
 	}
 }
 
-function switchButton(rend,container) {
-	_old_2d_content = eval('_current_'+container+'_content');
+function switchButton(rend) {
+	//_old_2d_content = eval('_current_'+container+'_content');
     eval('var cont = '+rend+'.container');    
-    showLarge(jQuery(cont), _old_2d_content);
+    showLarge(jQuery(cont));
 }
 
 function changeSliceOption(slice, prev) {

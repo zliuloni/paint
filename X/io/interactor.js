@@ -864,20 +864,22 @@ function losp_change_pixel(x, y, z, id, labelmap) {
 	//image: this 3D array is never used but i am going to update it anyway
 	volume.labelmap._image[z][y][x] = id;
 	
-	//check if the chosen brush color already exists in the favorite colors dropdown
-	var rgbaColor = [red,green,blue,undefined];
-	var exists = false;
-	$('#favColors option').each(function(){
-	    if (this.value == rgbaColor) {
-	        exists = true;
-	        return false;
-	    }
-	});
-	
-	//if it does not exist, add it to the dropdown
-	if(!exists) {
-		var hexColor = ((1 << 24) + (red << 16) + (green << 8) + blue).toString(16).substr(1);
-		$("<option value="+rgbaColor+" style=\"background-color:#"+hexColor+";\"></option>").appendTo("#favColors");
+	//check if the chosen brush color already exists in the favorite colors dropdown only if eraser is not selected
+	if(id!=0) {
+		var rgbaColor = [red,green,blue,undefined];
+		var exists = false;
+		$('#favColors option').each(function(){
+		    if (this.value == rgbaColor) {
+		        exists = true;
+		        return false;
+		    }
+		});
+		
+		//if it does not exist, add it to the dropdown
+		if(!exists) {
+			var hexColor = ((1 << 24) + (red << 16) + (green << 8) + blue).toString(16).substr(1);
+			$("<option value="+rgbaColor+" style=\"background-color:#"+hexColor+";\"></option>").appendTo("#favColors");
+		}
 	}
  		
 	losp_2Dpixfill(labelmap._slicesX._children[x]._texture._rawData, (z*y_width+y)*4, red, green, blue, trans); //set pixel in X plane

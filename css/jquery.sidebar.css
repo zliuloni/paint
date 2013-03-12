@@ -56,7 +56,7 @@
 
 .navigation {
 	width: 200px;
-	position: fixed;
+	position: absolute;
 	margin: 0px;
 	padding: 0px;
 	top: 70px;
