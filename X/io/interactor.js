@@ -830,6 +830,10 @@ function losp_change_pixel(x, y, z, id, labelmap) {
 	
 	// Check if eraser option set
 	if (losp_slices._brush._eraser) {
+		//if clobber is off and color of pixel at (x,y,z) is not the same as brush color, do not erase and return 
+		if(!losp_slices._brush._clobber&&volume.labelmap._image[z][y][x]!=id)
+			return;
+		// if clobebr of on or color of pixel at (x,y,z) is the same as brush color, erase 
 		id = 0; // Set color id to none
 	}
 	
@@ -858,8 +862,24 @@ function losp_change_pixel(x, y, z, id, labelmap) {
 	
 	//window.console.log("XYZ: "+x+","+y+","+z+" changed to " + id);
 	//image: this 3D array is never used but i am going to update it anyway
-	volume.labelmap._image[z][y][x] = id;	
-		
+	volume.labelmap._image[z][y][x] = id;
+	
+	//check if the chosen brush color already exists in the favorite colors dropdown
+	var rgbaColor = [red,green,blue,undefined];
+	var exists = false;
+	$('#favColors option').each(function(){
+	    if (this.value == rgbaColor) {
+	        exists = true;
+	        return false;
+	    }
+	});
+	
+	//if it does not exist, add it to the dropdown
+	if(!exists) {
+		var hexColor = ((1 << 24) + (red << 16) + (green << 8) + blue).toString(16).substr(1);
+		$("<option value="+rgbaColor+" style=\"background-color:#"+hexColor+";\"></option>").appendTo("#favColors");
+	}
+ 		
 	losp_2Dpixfill(labelmap._slicesX._children[x]._texture._rawData, (z*y_width+y)*4, red, green, blue, trans); //set pixel in X plane
 	losp_2Dpixfill(labelmap._slicesY._children[y]._texture._rawData, (z*x_width+x)*4, red, green, blue, trans); //Y plane
 	losp_2Dpixfill(labelmap._slicesZ._children[z]._texture._rawData, (y*x_width+x)*4, red, green, blue, trans); //Z Plane

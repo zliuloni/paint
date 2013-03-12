@@ -118,6 +118,7 @@ jQuery(function() {
   	paintBrushSize();
   });
   
+  jQuery("#recentColors option[value=#000000]").hide();
   jQuery('#favColors').change(function() {
   	usedColors();
   });
