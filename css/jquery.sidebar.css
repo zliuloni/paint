@@ -47,7 +47,7 @@
 }
 
 #volumeTab {
-	height: 490px;
+	height: 510px;
 }
 
 #labelmapTab {
@@ -124,6 +124,7 @@
 
 .clicked-button { border-bottom:thick double #0064CD; height:27px;}
 .ui-icon-brush { width: 22px; height: 24px; background-image: url(../gfx/brush.png) !important; margin-left: 3px !important; margin-top: 0px !important; }
+.ui-icon-colorpicker { width: 22px; height: 24px; background-image: url(../gfx/colorpicker.png) !important; margin-left: 3px !important; margin-top: 0px !important; }
 .ui-icon-bucket { width: 22px; height: 24px; background-image: url(../gfx/bucket.png) !important; margin-left: 3px !important; margin-top: 0px !important; }
 .ui-icon-copy-zz { width: 22px; height: 24px; background-image: url(../gfx/copy.png) !important; margin-left: 3px !important; margin-top: 0px !important; }
 .ui-icon-paste-zz { width: 22px; height: 24px; background-image: url(../gfx/paste.png) !important; margin-left: 3px !important; margin-top: 0px !important; }

@@ -215,7 +215,7 @@ jQuery(function() {
   	}
   })
  
-  
+  jQuery('#colorpicker-icon').button({ icons: { primary: "ui-icon-colorpicker" }, text: false });
   jQuery('#brush-icon').button({ icons: { primary: "ui-icon-brush" }, text: false });
   jQuery('#bucket-icon').button({ icons: { primary: "ui-icon-bucket" }, text: false });
   jQuery('#copy-icon').button({ icons: { primary: "ui-icon-copy-zz" }, text: false });
@@ -233,6 +233,7 @@ jQuery(function() {
     jQuery('#eraser-icon').removeClass('clicked-button');
     jQuery('#magic2d-icon').removeClass('clicked-button');
     jQuery('#magic3d-icon').removeClass('clicked-button');
+    jQuery('#colorpicker-icon').removeClass('clicked-button');
     toggleOption();
   });
   jQuery('#bucket-icon').click(function() {
@@ -241,6 +242,7 @@ jQuery(function() {
     jQuery('#eraser-icon').removeClass('clicked-button');
     jQuery('#magic2d-icon').removeClass('clicked-button');
     jQuery('#magic3d-icon').removeClass('clicked-button');
+    jQuery('#colorpicker-icon').removeClass('clicked-button');
     toggleOption();
   });
   jQuery('#eraser-icon').click(function() {
@@ -249,6 +251,7 @@ jQuery(function() {
     jQuery('#brush-icon').removeClass('clicked-button');
     jQuery('#magic2d-icon').removeClass('clicked-button');
     jQuery('#magic3d-icon').removeClass('clicked-button');
+    jQuery('#colorpicker-icon').removeClass('clicked-button');
     toggleOption();
   });
   jQuery('#magic2d-icon').click(function() {
@@ -257,6 +260,7 @@ jQuery(function() {
     jQuery('#brush-icon').removeClass('clicked-button');
     jQuery('#eraser-icon').removeClass('clicked-button');
     jQuery('#magic3d-icon').removeClass('clicked-button');
+    jQuery('#colorpicker-icon').removeClass('clicked-button');
     toggleOption();
   });
   jQuery('#magic3d-icon').click(function() {
@@ -265,6 +269,17 @@ jQuery(function() {
     jQuery('#brush-icon').removeClass('clicked-button');
     jQuery('#magic2d-icon').removeClass('clicked-button');
     jQuery('#eraser-icon').removeClass('clicked-button');
+    jQuery('#colorpicker-icon').removeClass('clicked-button');
+    toggleOption();
+  });
+  
+ jQuery('#colorpicker-icon').click(function() {
+    jQuery('#colorpicker-icon').addClass('clicked-button');
+    jQuery('#bucket-icon').removeClass('clicked-button');
+    jQuery('#brush-icon').removeClass('clicked-button');
+    jQuery('#magic2d-icon').removeClass('clicked-button');
+    jQuery('#eraser-icon').removeClass('clicked-button');
+    jQuery('#magic3d-icon').removeClass('clicked-button');
     toggleOption();
   });
   

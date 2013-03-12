@@ -1146,6 +1146,26 @@ function losp_2D_fill(x, y, z, view, id, labelmap) {
 	
 }
 
+function colorSelector(x,y,z,labelmap) {
+	console.log(labelmap);
+	var colorid = labelmap._image[z][y][x];
+	if(colorid == 0)
+		console.log("Invalid selection");
+	else {
+			var map = labelmap._colortable._map;
+			var value = map.get(colorid);
+			var rgba = {};
+			rgba.r = Math.floor(value[1]*255);
+			rgba.g = Math.floor(value[2]*255);
+			rgba.b = Math.floor(value[3]*255);
+			rgba.a = undefined;
+			var rgbaColor = [rgba.r, rgba.g, rgba.b, rgba.a];
+			losp_slices._brush._color = rgbaColor;
+			var hexColor = ((1 << 24) + (rgba.r << 16) + (rgba.g << 8) + rgba.b).toString(16).substr(1);
+			$('#brushColor').miniColors('value','#' + hexColor);
+	}
+}
+
 function losp_magic_fill(x, y, z, view, id, volume, is3d) {
 	//zzztodo update range, disable options
 	var labelmap = volume._labelmap;
@@ -1489,6 +1509,8 @@ function losp_MouseMove(id, drag, evt) {
 				losp_magic_fill(x, y, z, view, losp_slices._brush._colorid, volume, false);
 			else if (losp_slices._brush._mode==4 && !drag) 
 				losp_magic_fill(x, y, z, view, losp_slices._brush._colorid, volume, true);
+			else if (losp_slices._brush._mode==5 && !drag) 
+				colorSelector(x, y, z,volume._labelmap);
 				
 		}
 	}
