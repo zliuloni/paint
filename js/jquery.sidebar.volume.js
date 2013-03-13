@@ -189,30 +189,48 @@ jQuery(function() {
   		switched = true;
   	}
   	else {
-  		switchButton('ren3d');
-  		switched = false;
+  		if(_current_X_content instanceof X.renderer2D) {
+  			switchButton('ren3d');
+  			switchButton('sliceX');
+  		}
+  		else {
+  			switchButton('ren3d');
+  			switched = false;
+  		}
   	}  
   });
   
   jQuery('#switchButtonY').click(function() {
   	if(!switched) {
-  		switchButton('sliceY', 'Y');
+  		switchButton('sliceY')
   		switched = true;
   	}
   	else {
-  		switchButton('ren3d','3d');
-  		switched = false;
+  		if(_current_Y_content instanceof X.renderer2D) {
+  			switchButton('ren3d');
+  			switchButton('sliceY');
+  		}
+  		else {
+  			switchButton('ren3d');
+  			switched = false;
+  		}
   	}
   })
   
   jQuery('#switchButtonZ').click(function() {
   	if(!switched) {
-  		switchButton('sliceZ', 'Z');
+  		switchButton('sliceZ');
   		switched = true;
   	}
   	else {
-  		switchButton('ren3d','3d');
-  		switched = false;
+  		if(_current_Z_content instanceof X.renderer2D) {
+  			switchButton('ren3d');
+  			switchButton('sliceZ');
+  		}
+  		else {
+  			switchButton('ren3d');
+  			switched = false;
+  		}
   	}
   })
  

@@ -308,6 +308,7 @@ function showLarge(el2) {
    	_current_3d_content.resetViewAndRender();
   }
   
+  //shrink 2d image to fit 2d container
    eval('var _current_2d_content = _current_' + _orientation + '_content');
    if(_current_2d_content instanceof X.renderer2D) {
   	var container = goog.dom.getElement(_current_2d_content._container);
@@ -323,5 +324,13 @@ function showLarge(el2) {
    	
    	eval('_current_' + _orientation + '_content = _current_2d_content');
   }
-  
+ 
+  ren3d.camera.view = new X.matrix(
+	[[-0.5093217615929089, -0.8570143021091494, -0.07821655290449646, 10],
+	[0.15980913879519168, -0.1834973848251334, 0.9699431678814355, 17],
+	[-0.8456077000154597, 0.48151344295118087, 0.23041792884205461, -330*0.88],
+	[0, 0, 0, 1]]);
+
+  ren3d.render();
+ 
 };
