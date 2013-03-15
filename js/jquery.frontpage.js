@@ -230,10 +230,28 @@ function switchToViewer() {
   jQuery('#frontpage').hide();
   jQuery('#viewer').show();
   
-	var twodwidth = Math.floor(jQuery(window).height()*0.38);
+	twodwidth = Math.floor(jQuery(window).height()*0.38);
 	jQuery('.twoDRenderer').css("width", twodwidth+"px");
+	jQuery('.threeDRenderer').css("left", twodwidth+parseInt(200)+"px");
 	
-	var threedwidth = jQuery(window).width() - twodwidth - 200;
+	threedwidth = jQuery(window).width() - twodwidth - 200;
+	threedheight = jQuery(window).height();
+	
+	margin = 0;
+	if(threedheight < threedwidth){
+		threedwidth = threedheight * 1.15;
+		margin = jQuery(window).width() - twodwidth - 200 - threedwidth;
+		jQuery('.threeDRenderer').css("margin-left", margin/2+"px");
+		jQuery('.threeDRenderer').css("margin-right", margin/2+"px");
+	}
+	else if(threedheight > threedwidth) {
+		threedheight = threedwidth / 1.15;
+		margin = jQuery(window).height() - threedheight;
+		jQuery('.threeDRenderer').css("margin-top", margin/2+"px");
+		jQuery('.threeDRenderer').css("margin-bottom", margin/2+"px");
+	}
+			
+	jQuery('.threeDRenderer').css("height", threedheight+"px");
 	jQuery('.threeDRenderer').css("width", threedwidth+"px");
 
 	var barright = Math.floor(threedwidth/2);
@@ -293,10 +311,66 @@ function showLarge(el2) {
   // .. and update the layout
   _current_3d_content = _old_2d_content;
   eval('_current_' + _orientation + '_content = _old_3d_content');
-
-  //enlarge 2d image to fit 3d container
+  eval('var _current_2d_content = _current_' + _orientation + '_content');
+ 
+  var container, canvas;
+  eval('var _current_2d_content = _current_' + _orientation + '_content');
+  
   if(_current_3d_content instanceof X.renderer2D) {
-  	var container = goog.dom.getElement(_current_3d_content._container);
+  	
+  	//enlarge 2d image to fit 3d container
+  	container = goog.dom.getElement(_current_3d_content._container);
+  	_current_3d_content._width = container.clientWidth;
+  	_current_3d_content._height = container.clientHeight;
+   
+  	// propagate it to the canvas
+   	canvas = goog.dom.getElement(_current_3d_content._canvas);
+   	canvas.width = _current_3d_content._width;
+  	canvas.height = _current_3d_content._height;
+  
+    _current_3d_content._camera = new X.camera2D(_current_3d_content._container.clientWidth,_current_3d_content._container.clientWidth)
+   	_current_3d_content.resetViewAndRender();
+ 	
+ 	//shrink 3d image to fit 2d container
+   	container = goog.dom.getElement(_current_2d_content._container);
+  	_current_2d_content._width = container.clientWidth;
+  	_current_2d_content._height = container.clientHeight;
+   
+  	// propagate it to the canvas
+   	canvas = goog.dom.getElement(_current_2d_content._canvas);
+   	canvas.width = _current_2d_content._width;
+  	canvas.height = _current_2d_content._height;
+  	
+  	_old_perspective = _current_2d_content._camera._perspective;
+  	ratio = _current_2d_content._container.clientWidth/_current_2d_content._container.clientHeight;
+  	_new_perspective = new Float32Array(_current_2d_content._camera.calculatePerspective_(_current_2d_content._camera._fieldOfView, ratio, 1, 10000).flatten());
+  	_current_2d_content._camera._perspective = _new_perspective;
+  	
+  	ren3d.camera.view = new X.matrix(
+	[[-0.5093217615929089, -0.8570143021091494, -0.07821655290449646, 10],
+	[0.15980913879519168, -0.1834973848251334, 0.9699431678814355, 17],
+	[-0.8456077000154597, 0.48151344295118087, 0.23041792884205461, -270],
+	[0, 0, 0, 1]]);
+  	
+  	_current_2d_content.render();
+  }
+  
+  if(_current_2d_content instanceof X.renderer2D) {
+   
+    //shrink 2d image to fit 2d container
+  	container = goog.dom.getElement(_current_2d_content._container);
+  	_current_2d_content._width = container.clientWidth;
+  	_current_2d_content._height = container.clientHeight;
+   
+  	// propagate it to the canvas
+   	canvas = goog.dom.getElement(_current_2d_content._canvas);
+   	canvas.width = _current_2d_content._width;
+  	canvas.height = _current_2d_content._height;
+  	
+   	_current_2d_content.resetViewAndRender();
+   	
+   	//enlarge 3d image to fit 3d container
+   	container = goog.dom.getElement(_current_3d_content._container);
   	_current_3d_content._width = container.clientWidth;
   	_current_3d_content._height = container.clientHeight;
    
@@ -304,33 +378,16 @@ function showLarge(el2) {
    	var canvas = goog.dom.getElement(_current_3d_content._canvas);
    	canvas.width = _current_3d_content._width;
   	canvas.height = _current_3d_content._height;
-  	
-   	_current_3d_content.resetViewAndRender();
-  }
   
-  //shrink 2d image to fit 2d container
-   eval('var _current_2d_content = _current_' + _orientation + '_content');
-   if(_current_2d_content instanceof X.renderer2D) {
-  	var container = goog.dom.getElement(_current_2d_content._container);
-  	_current_2d_content._width = container.clientWidth;
-  	_current_2d_content._height = container.clientHeight;
-   
-  	// propagate it to the canvas
-   	var canvas = goog.dom.getElement(_current_2d_content._canvas);
-   	canvas.width = _current_2d_content._width;
-  	canvas.height = _current_2d_content._height;
-  	
-   	_current_2d_content.resetViewAndRender();
+   	_current_3d_content._camera._perspective = _old_perspective;
    	
-   	eval('_current_' + _orientation + '_content = _current_2d_content');
-  }
- 
-  ren3d.camera.view = new X.matrix(
+   	ren3d.camera.view = new X.matrix(
 	[[-0.5093217615929089, -0.8570143021091494, -0.07821655290449646, 10],
 	[0.15980913879519168, -0.1834973848251334, 0.9699431678814355, 17],
-	[-0.8456077000154597, 0.48151344295118087, 0.23041792884205461, -330*0.88],
+	[-0.8456077000154597, 0.48151344295118087, 0.23041792884205461, -370],
 	[0, 0, 0, 1]]);
-
-  ren3d.render();
- 
+   	
+   	_current_3d_content.render();
+  }
+  eval('_current_' + _orientation + '_content = _current_2d_content');
 };

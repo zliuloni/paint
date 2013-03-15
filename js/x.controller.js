@@ -471,6 +471,7 @@ function bgColorVolume(hex, rgb) {
 }
 
 function currentBackground(hex, rgb) {
+	$("#viewer").css('background-color',hex);
 	$(".threeDRenderer").css('background-color',hex);
 	$(".twoDRenderer").css('background-color',hex);	
 }

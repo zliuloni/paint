@@ -6,9 +6,9 @@
 
 .threeDRenderer {
 	background-color: #000;
-	height: 100%;
+	#height: 100%;
+	right: 0%
 	position: absolute;
-	left: 453px;
 	bottom: 0%;
 	top: 0%;
 	overflow: hidden !important;	
@@ -24,23 +24,9 @@
 	border-left: thin solid #666;
 	border-right: thin solid #666;
 	background-color: #000;
-	width: 253px;
 	height: 23.333%; /*was 33.333%*/
 	position: absolute;
 	left: 200px;
-}
-.twoDRenderer canvas {
-	min-width:100%; 
-	min-height:100%;
-	max-width:100%; 
-	max-height:100%;
-}
-
-.threeDRenderer canvas {
-	min-width:100%; 
-	min-height:100%;
-	max-width:100%; 
-	max-height:100%;
 }
 
 #yellow_slider {

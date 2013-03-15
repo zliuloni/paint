@@ -199,14 +199,17 @@ function loadLabelMaps() {
   ren3d.add(volume);
   
   ren3d.render();
-  
+
   configurator = function() {
+	
 	ren3d.camera.view = new X.matrix(
 	    [[-0.5093217615929089, -0.8570143021091494, -0.07821655290449646, 10],
 	     [0.15980913879519168, -0.1834973848251334, 0.9699431678814355, 17],
-	     [-0.8456077000154597, 0.48151344295118087, 0.23041792884205461, -400],
+	     [-0.8456077000154597, 0.48151344295118087, 0.23041792884205461, -370],
 	     [0, 0, 0, 1]]);
 
+	ratio = ren3d._container.clientWidth/ren3d._container.clientHeight;
+	ren3d.camera._perspective = new Float32Array(ren3d._camera.calculatePerspective_(ren3d._camera._fieldOfView,1/ ratio, 1, 10000).flatten());
   };
   
 }
