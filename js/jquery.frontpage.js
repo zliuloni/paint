@@ -239,13 +239,13 @@ function switchToViewer() {
 	
 	margin = 0;
 	if(threedheight < threedwidth){
-		threedwidth = threedheight * 1.15;
+		threedwidth = threedheight;
 		margin = jQuery(window).width() - twodwidth - 200 - threedwidth;
 		jQuery('.threeDRenderer').css("margin-left", margin/2+"px");
 		jQuery('.threeDRenderer').css("margin-right", margin/2+"px");
 	}
 	else if(threedheight > threedwidth) {
-		threedheight = threedwidth / 1.15;
+		threedheight = threedwidth;
 		margin = jQuery(window).height() - threedheight;
 		jQuery('.threeDRenderer').css("margin-top", margin/2+"px");
 		jQuery('.threeDRenderer').css("margin-bottom", margin/2+"px");
